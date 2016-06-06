@@ -29,7 +29,6 @@ public class InsertAktStudentView extends JFrame implements Observer{
     public JTextField studentTextField;
     public JTextField AktivitätTextField;
     public JTextField semesterTextField;
-    public JTextField bemerkungTextField;
     public JTextField artTextField;
     public JTextArea bemerkungTextArea;
     public JComboBox studentCb;
@@ -364,6 +363,56 @@ public class InsertAktStudentView extends JFrame implements Observer{
         controlPanel.add(bemerkungTextArea);
 
         return contentPane;
+    }
+
+    public void erfolgDialog(){
+
+        JLabel erfolgEingabeLbl = new JLabel("<html>Die eingegebenen Daten wurden erfolgreich gespeichert </html>");
+        erfolgEingabeLbl.setFont(new Font("Te X Gyre Heros", Font.PLAIN, 16));
+        Icon erfolgIcon = new ImageIcon("images/yes2.png");
+
+
+        //custom title, custom icon
+        JOptionPane.showMessageDialog(this,
+                erfolgEingabeLbl,
+                "Eingabe erfolgreich",
+                JOptionPane.PLAIN_MESSAGE,
+                erfolgIcon);
+
+        // Clear Text Field
+        this.studentCb.setSelectedIndex(0);
+        this.aktivitaetCb.setSelectedIndex(0);
+        this.semesterTextField.setText("");
+        this.bemerkungTextArea.setText("");
+
+    }
+
+    public void errorDialog(String message){
+
+        JLabel fehlerEingabeLbl = new JLabel("<html>" + message +" </html>");
+        fehlerEingabeLbl.setFont(new Font("Te X Gyre Heros", Font.PLAIN, 16));
+        Icon fehlerIcon = new ImageIcon("images/nope2.png");
+
+        //custom title, custom icon
+        JOptionPane.showMessageDialog(this,
+                fehlerEingabeLbl,
+                "Eingabe nicht erfolgreich",
+                JOptionPane.PLAIN_MESSAGE,
+                fehlerIcon);
+    }
+
+    public void infoDialog(String message){
+
+        JLabel fehlerEingabeLbl = new JLabel("<html>" + message +" </html>");
+        fehlerEingabeLbl.setFont(new Font("Te X Gyre Heros", Font.PLAIN, 16));
+        Icon fehlerIcon = new ImageIcon("images/warning.png");
+
+        //custom title, custom icon
+        JOptionPane.showMessageDialog(this,
+                fehlerEingabeLbl,
+                "Information",
+                JOptionPane.PLAIN_MESSAGE,
+                fehlerIcon);
     }
 
     private JMenuBar makeMenuBar(){

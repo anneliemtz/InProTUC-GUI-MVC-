@@ -56,22 +56,69 @@ public class InsertAktStudentController implements ActionListener, KeyListener{
              * Betätigung vom Senden-Button
              */
             if(source.equals(_view.senden)){
-                System.out.println("User will senden");
+
+                String semester = _view.semesterTextField.getText();
+                String bemerkung = _view.bemerkungTextArea.getText();
+
                 String studentName = (String) _view.studentCb.getSelectedItem();//get the selected item
                 System.out.println("Name des Students: " + studentName);
-                String urz = _model.findUrz(studentName);
+
+                //Nachname wird aus dem kompletten Namen gesplittet
+                String[] name = studentName.split(",");
+                String nachname = name[0];
+                System.out.println("getrimt:" + nachname);
+
+                String urz = _model.findUrz(nachname);
+                System.out.println("Urz: " + urz);
 
                 String aktivitaetBeschreibung = (String) _view.aktivitaetCb.getSelectedItem();//get the selected item
                 System.out.println("Aktivitaet: " + aktivitaetBeschreibung);
 
-                String id_m_a = _model.findId_m_a(aktivitaetBeschreibung);
+                int id_m_a = _model.findId_m_a(aktivitaetBeschreibung);
                 System.out.println("Id Aktivität: " + id_m_a);
 
                 /**
-                 * String id_s_m_a = _model.findId_s_m_a(aktivitaetBeschreibung, urz);
-                 System.out.println("Id Student: " + id_s_m_a);
+                 * Die Daten werden ans Model geschickt
                  */
+                int ergebnis = _model.insertValues(urz, id_m_a, semester, bemerkung);
+                System.out.println(ergebnis);
 
+                /**
+                 * Eingabe nicht erfolgreich
+                 */
+                if (ergebnis == 1) {
+                    _view.erfolgDialog();
+                }
+
+                /**
+                 * Eingabe erfolgreich
+                 */
+                else if (ergebnis == -1) {
+                    _view.errorDialog("Ein Fehler beim Einfügen ist aufgetreten");
+                    String fehlerString = _model.getErrorMessage();
+                    _view.infoDialog(fehlerString);
+
+                    return;
+
+                }
+
+                // Auswahl wird ausgegeben
+                String a = (String) _view.aktivitaetCb.getSelectedItem();//get the selected item
+                System.out.println(a);
+
+                _view.bool = _model.returnMobilitaet(a);
+
+                if(_view.bool == 1){
+                    /**
+                     * Zusätzlich in student_mob einfügen
+                     */
+
+
+                    /**
+                     * String id_s_m_a = _model.findId_s_m_a(aktivitaetBeschreibung, urz);
+                     System.out.println("Id Student: " + id_s_m_a);
+                     */
+                }
 
             }
 

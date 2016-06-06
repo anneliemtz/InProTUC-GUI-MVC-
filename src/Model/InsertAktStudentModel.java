@@ -18,7 +18,8 @@ public class InsertAktStudentModel extends Observable {
     ArrayList<String> dataAktivitaet;
     int bool;
     public String fehlerString;
-    String urz, id_s_m_a, id_m_a;
+    String urz;
+    int id_s_m_a, id_m_a;
 
     public InsertAktStudentModel(){
         /**
@@ -31,7 +32,7 @@ public class InsertAktStudentModel extends Observable {
 
     }
 
-    public String findId_m_a(String aktivitaetBeschreibung){
+    public int findId_m_a(String aktivitaetBeschreibung){
         try{
             // Query 1
             String query ="SELECT id FROM m_a " +
@@ -47,7 +48,7 @@ public class InsertAktStudentModel extends Observable {
 
             //holt die Tupel
             while (result.next()){
-                id_m_a = result.getString("id");
+                id_m_a = result.getInt("id");
             }
 
             /// Statement closed und ResultStatement closed
@@ -66,7 +67,7 @@ public class InsertAktStudentModel extends Observable {
         return id_m_a;
     }
 
-    public String findId_s_m_a(String aktivitaetBeschreibung, String urzStudent){
+    public int findId_s_m_a(String aktivitaetBeschreibung, String urzStudent){
         try{
             // Query 1
             String query ="SELECT s_m_a.id FROM s_m_a " +
@@ -84,7 +85,7 @@ public class InsertAktStudentModel extends Observable {
 
             //holt die Tupel
             while (result.next()){
-                id_s_m_a = result.getString("s_m_a.id");
+                id_s_m_a = result.getInt("s_m_a.id");
             }
 
             /// Statement closed und ResultStatement closed
@@ -171,6 +172,41 @@ public class InsertAktStudentModel extends Observable {
         return dataStudent;
     }
 
+    public int insertValues(String urz, int id_m_a, String semester, String bemerkung){
+        try{
+            // Query
+            String query ="INSERT INTO s_m_a (urz, id_m_a, semester, bemerkung) VALUES( ?, ?, ?, '{" + bemerkung + "}')";
+
+            // ein Objekt der Klasse PrepareStatement wird  erzeugt.
+            pst = _conn.prepareStatement(query);
+            pst.setString(1, urz);
+            pst.setInt(2, id_m_a);
+            pst.setString(3, semester);
+
+            System.out.println("Query: " + pst);
+
+            // ein Abfrage auf die Tabelle
+            pst.executeUpdate();
+
+            /// Statement closed und ResultStatement closed
+            System.out.println("Insert succeed");
+            pst.close();
+
+            return 1;
+        }
+
+        //TODO: Dass eventuell Fehler in einem JDialog angezeigt werden
+        catch(SQLException exception ){
+            System.out.println(exception);
+
+            fehlerString = exception.getMessage();
+            System.out.println(fehlerString);
+
+            return -1;
+        }
+
+    }
+
     public ArrayList<String> returnAktivitaetName(){
         try {
             // Query 1
@@ -227,6 +263,8 @@ public class InsertAktStudentModel extends Observable {
 
         return bool;
     }
+
+    public String getErrorMessage(){return fehlerString; }
 
     //TODO: insertValues Methode
 

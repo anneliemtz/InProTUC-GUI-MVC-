@@ -64,6 +64,7 @@ public class InsertAktivitaetController implements ActionListener, KeyListener, 
 
                     if (ergebnis == 1) {
                         _view.erfolgDialog();
+
                     } else if (ergebnis == -1) {
                         _view.errorDialog("Ein Fehler beim Einfügen ist aufgetreten");
                         String fehlerString = _model.getErrorMessage();
