@@ -46,7 +46,8 @@ SELECT student.urz, name, vorname, geburtsdatum, fakultaet, telefon, email, stat
 INNER JOIN student_status ON student.urz = student_status.urz
 WHERE name = 'Ahmad';
 
-
+%%%%%%%%%%%%%%%%%%%% get s_m_a %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+select id from s_m_a where urz = 'ahhu1' and id_m_a = '14';
 
 
 

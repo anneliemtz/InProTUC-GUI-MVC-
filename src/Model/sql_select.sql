@@ -38,24 +38,10 @@ select aktivitaet_name, zeitraum, beschreibung, massnahme_name from aktivitaet;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-SELECT s_m_a.id FROM s_m_a INNER JOIN m_a ON m_a.id = id_m_a INNER JOIN aktivitaet ON aktivitaet.aktivitaet_name = m_a.aktivitaet_name WHERE beschreibung = 'Förderzeitraum 15.10.2015 - 31.03.2016' AND urz = 'anto3';
+%%%%%%%%%%%%%%%%%%%% get s_m_a %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+select id from s_m_a where urz = 'ahhu1' and id_m_a = '14';
 
-SELECT m_a.id FROM m_a INNER JOIN aktivitaet ON aktivitaet.aktivitaet_name = m_a.aktivitaet_name WHERE beschreibung = 'Kontaktreisen zwischen August und Dez. 2015';
-
-SELECT student.urz, name, vorname, geburtsdatum, fakultaet, telefon, email, status_typ FROM student
-INNER JOIN student_status ON student.urz = student_status.urz
-WHERE name = 'Ahmad';
-
-
-
-
-
-
-
-
-
-
-select aktivitaet_name from aktivitaet where beschreibung = 'Förderzeitraum – Nov. - Dez. 2014';
+%%%%%%%%%%%%%%%%%%%% get m_a %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 select id from m_a where aktivitaet_name = 'M_01_14';
 
 String query ="select aktivitaet_name from aktivitaet where beschreibung = '" + aktivitaetBeschreibung + "'; select id from m_a where aktivitaet_name = '"+ aktivitaetName+"';";
