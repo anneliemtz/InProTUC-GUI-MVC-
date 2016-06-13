@@ -67,25 +67,24 @@ public class InsertAktStudentModel extends Observable {
         return id_m_a;
     }
 
-    public int findId_s_m_a(String aktivitaetBeschreibung, String urzStudent){
+    //TODO: funktioniert nicht
+    public int findId_s_m_a(String urz, int idMa){
         try{
             // Query 1
-            String query ="SELECT s_m_a.id FROM s_m_a " +
-                    "INNER JOIN m_a ON m_a.id = id_m_a " +
-                    "INNER JOIN aktivitaet ON aktivitaet.aktivitaet_name = m_a.aktivitaet_name " +
-                    "WHERE beschreibung = '" + aktivitaetBeschreibung + "' " +
-                    "AND urz = '" + urzStudent + "';";
+            String query ="SELECT id FROM s_m_a WHERE urz = ? AND id_m_a = ?;";
 
             // PrepareStatement wird  erzeugt.
             pst =_conn.prepareStatement(query);
-            //pst.setString(1, name);
+            pst.setString(1, urz);
+            pst.setInt(2, idMa);
+
 
             // ein Abfrage auf die Tabelle
             ResultSet result = pst.executeQuery();
 
             //holt die Tupel
             while (result.next()){
-                id_s_m_a = result.getInt("s_m_a.id");
+                id_s_m_a = result.getInt("id");
             }
 
             /// Statement closed und ResultStatement closed
@@ -195,7 +194,40 @@ public class InsertAktStudentModel extends Observable {
             return 1;
         }
 
-        //TODO: Dass eventuell Fehler in einem JDialog angezeigt werden
+        catch(SQLException exception ){
+            System.out.println(exception);
+
+            fehlerString = exception.getMessage();
+            System.out.println(fehlerString);
+
+            return -1;
+        }
+
+    }
+
+    public int insertValuesMobilität(int idSma, String durchführung, String art){
+        try{
+            // Query
+            String query ="INSERT INTO student_mob (id_s_m_a, durchfuehrung, art) VALUES (?, ?, ?);";
+
+            // ein Objekt der Klasse PrepareStatement wird  erzeugt.
+            pst = _conn.prepareStatement(query);
+            pst.setInt(1, idSma);
+            pst.setString(2, durchführung);
+            pst.setString(3, art);
+
+            System.out.println("Query: " + pst);
+
+            // ein Abfrage auf die Tabelle
+            pst.executeUpdate();
+
+            /// Statement closed und ResultStatement closed
+            System.out.println("Insert succeed");
+            pst.close();
+
+            return 1;
+        }
+
         catch(SQLException exception ){
             System.out.println(exception);
 

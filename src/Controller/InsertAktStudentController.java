@@ -18,6 +18,7 @@ public class InsertAktStudentController implements ActionListener, KeyListener{
 
     private InsertAktStudentModel _model;
     private InsertAktStudentView _view;
+    boolean mob = false;
 
     String INSERT_STUDENT = "Neuer Student einfügen", INSERT_AKT_STU = "Aktivität eines Studenten eintragen", INSERT_STATUS_STUDENT = "Status eines Studenten eintragen", INSERT_AKT = "Neue Aktivität einfügen", INSERT_STATUS = "Neuer Status einfügen";
     String UPDATE_STUDENT = "Daten eines Studenten ändern oder löschen", UPDATE_AKTIVITAET = "Aktivität ändern oder löschen", UPDATE_STATUS = "Status ändern oder löschen";
@@ -83,42 +84,91 @@ public class InsertAktStudentController implements ActionListener, KeyListener{
                 int ergebnis = _model.insertValues(urz, id_m_a, semester, bemerkung);
                 System.out.println(ergebnis);
 
-                /**
-                 * Eingabe nicht erfolgreich
-                 */
-                if (ergebnis == 1) {
-                    _view.erfolgDialog();
-                }
-
-                /**
-                 * Eingabe erfolgreich
-                 */
-                else if (ergebnis == -1) {
-                    _view.errorDialog("Ein Fehler beim Einfügen ist aufgetreten");
-                    String fehlerString = _model.getErrorMessage();
-                    _view.infoDialog(fehlerString);
-
-                    return;
-
-                }
-
-                // Auswahl wird ausgegeben
-                String a = (String) _view.aktivitaetCb.getSelectedItem();//get the selected item
-                System.out.println(a);
-
-                _view.bool = _model.returnMobilitaet(a);
-
-                if(_view.bool == 1){
+                if(!mob){
                     /**
-                     * Zusätzlich in student_mob einfügen
+                     * Eingabe erfolgreich
                      */
-
+                    if (ergebnis == 1) {
+                        _view.erfolgDialog();
+                        // Clear Text Field
+                        _view.studentCb.setSelectedIndex(0);
+                        _view.aktivitaetCb.setSelectedIndex(0);
+                        _view.semesterTextField.setText("");
+                        _view.bemerkungTextArea.setText("");
+                    }
 
                     /**
-                     * String id_s_m_a = _model.findId_s_m_a(aktivitaetBeschreibung, urz);
-                     System.out.println("Id Student: " + id_s_m_a);
+                     * Eingabe nicht erfolgreich
                      */
+                    else if (ergebnis == -1) {
+                        _view.errorDialog("Ein Fehler beim Einfügen ist aufgetreten");
+                        String fehlerString = _model.getErrorMessage();
+                        _view.infoDialog(fehlerString);
+
+                        return;
+
+                    }
                 }
+
+                /**
+                 * Falls es sich um eine Aktivität der Art Mobilität handelt, wird
+                 * eine zusätzliche Eingabe in der Datenbank gemacht
+                 */
+                if(mob){
+                    System.out.println("Insert Mob!!!");
+                    String art = _view.artTextField.getText();
+                    int id_s_m_a = _model.findId_s_m_a(urz, id_m_a);
+                    System.out.println("Id s_m_a: " + id_m_a);
+                    String durchfuehrung;
+
+                    if(_view.jaRBtn.isSelected()){
+                        durchfuehrung = "ja";
+                    }
+                    else
+                        durchfuehrung = "nein";
+
+                    int ergrbnis2 = _model.insertValuesMobilität(id_s_m_a,durchfuehrung,art);
+                    /**
+                     * Eingabe erfolgreich
+                     */
+                    if (ergebnis == 1 && ergrbnis2 == 1) {
+                        _view.erfolgDialog();
+                        // Clear Text Field
+                        _view.studentCb.setSelectedIndex(0);
+                        _view.aktivitaetCb.setSelectedIndex(0);
+                        _view.semesterTextField.setText("");
+                        _view.bemerkungTextArea.setText("");
+                        // Clear Text Field
+                        _view.artTextField.setText("");
+                    }
+
+                    /**
+                     * Eingabe nicht erfolgreich
+                     */
+                    if (ergebnis == -1) {
+                        _view.errorDialog("Ein Fehler beim Einfügen ist aufgetreten");
+                        String fehlerString = _model.getErrorMessage();
+                        _view.infoDialog(fehlerString);
+
+                        return;
+
+                    }
+
+                    if (ergrbnis2 == -1) {
+                        _view.errorDialog("Ein Fehler beim Einfügen ist aufgetreten");
+                        String fehlerString = _model.getErrorMessage();
+                        _view.infoDialog(fehlerString);
+
+                        return;
+
+                    }
+
+                }
+
+
+
+
+
 
             }
 
@@ -158,6 +208,7 @@ public class InsertAktStudentController implements ActionListener, KeyListener{
 
             if(_view.bool == 1){
                 System.out.println("Mob einschlaten");
+                mob = true;
                 _view.controlPanel1.setEnabled(true);
                 _view.artLbl.setEnabled(true);
                 _view.durchfuehrungLbl.setEnabled(true);
@@ -170,6 +221,7 @@ public class InsertAktStudentController implements ActionListener, KeyListener{
 
             else{
                 System.out.println("Mob ausschlaten");
+                mob = false;
                 _view.controlPanel1.setEnabled(false);
                 _view.artLbl.setEnabled(false);
                 _view.durchfuehrungLbl.setEnabled(false);

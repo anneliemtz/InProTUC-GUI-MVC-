@@ -229,12 +229,12 @@ public class InsertAktStudentView extends JFrame implements Observer{
 
         JLabel semesterLbl = new JLabel("Semester");
         semesterLbl.setFont(new Font("Te X Gyre Heros", Font.BOLD, 16));
-        semesterLbl.setBounds(34, 234, 89, 27);
+        semesterLbl.setBounds(31, 191, 103, 27); 
         controlPanel.add(semesterLbl);
 
         JLabel bemerkungLbl = new JLabel("Bemerkung");
         bemerkungLbl.setFont(new Font("Te X Gyre Heros", Font.BOLD, 16));
-        bemerkungLbl.setBounds(31, 191, 103, 27);
+        bemerkungLbl.setBounds(34, 234, 89, 27);
         controlPanel.add(bemerkungLbl);
 
         JLabel aktivitaetLbl = new JLabel("Aktivität*");
@@ -378,12 +378,6 @@ public class InsertAktStudentView extends JFrame implements Observer{
                 "Eingabe erfolgreich",
                 JOptionPane.PLAIN_MESSAGE,
                 erfolgIcon);
-
-        // Clear Text Field
-        this.studentCb.setSelectedIndex(0);
-        this.aktivitaetCb.setSelectedIndex(0);
-        this.semesterTextField.setText("");
-        this.bemerkungTextArea.setText("");
 
     }
 
