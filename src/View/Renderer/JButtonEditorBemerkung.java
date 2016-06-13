@@ -1,17 +1,15 @@
 package View.Renderer;
 
-import javax.swing.table.TableCellEditor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Component;
-import javax.swing.JButton;
 import javax.swing.AbstractCellEditor;
+import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.table.TableCellEditor;
 
 /**
- * Created by annelie on 02.06.16.
+ * Created by annelie on 13.06.16.
  */
-public class JButtonEditor extends AbstractCellEditor implements TableCellEditor{
+public class JButtonEditorBemerkung extends AbstractCellEditor implements TableCellEditor{
     String text;
     public JButton button_table ;
     public UpdateInformationPersonModell _indexModel;
@@ -19,7 +17,7 @@ public class JButtonEditor extends AbstractCellEditor implements TableCellEditor
     private UpadateInformationPersonController _indexControler;
 
     // das ist mien Konstruktor und hier wird alle Button
-    public  JButtonEditor (){
+    public  JButtonEditorBemerkung (){
 
         button_table=new JButton();
 
@@ -28,7 +26,7 @@ public class JButtonEditor extends AbstractCellEditor implements TableCellEditor
 
     }
 
-    public JButtonEditor(UpdateInformationPersonModell model ,UpadateInformationPersonController controler)
+    public JButtonEditorBemerkung(UpdateInformationPersonModell model ,UpadateInformationPersonController controler)
     {  super();
         _indexModel=model;
 
@@ -41,18 +39,21 @@ public class JButtonEditor extends AbstractCellEditor implements TableCellEditor
 
     }
 
-    @Override
-    public Component getTableCellEditorComponent(JTable jTable, Object o, boolean b, int i, int i1) {
-        button_table.setText("x");
-        return button_table;
-    }
-
-    @Override
     public Object getCellEditorValue() {
+        // TODO Auto-generated method stub
         return null;
     }
+
+
+    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelcted, int row, int column) {
+        button_table.setText("x");
+        return button_table;
+
+    }
+
 
     public boolean stopCellEditing(){
         return true;
     }
+
 }

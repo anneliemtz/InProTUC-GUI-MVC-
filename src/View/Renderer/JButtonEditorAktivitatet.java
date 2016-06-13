@@ -9,17 +9,18 @@ import javax.swing.AbstractCellEditor;
 import javax.swing.JTable;
 
 /**
- * Created by annelie on 02.06.16.
+ * Created by annelie on 13.06.16.
  */
-public class JButtonEditor extends AbstractCellEditor implements TableCellEditor{
+public class JButtonEditorAktivitatet extends AbstractCellEditor implements TableCellEditor{
+
     String text;
     public JButton button_table ;
-    public UpdateInformationPersonModell _indexModel;
+    private Index_Protuc_Modell _indexModel;
     /// zum View gehoeriger Controller
-    private UpadateInformationPersonController _indexControler;
+    private Index_Protuc_Controller _indexControler;
 
     // das ist mien Konstruktor und hier wird alle Button
-    public  JButtonEditor (){
+    public  JButtonEditorAktivitatet (){
 
         button_table=new JButton();
 
@@ -28,7 +29,7 @@ public class JButtonEditor extends AbstractCellEditor implements TableCellEditor
 
     }
 
-    public JButtonEditor(UpdateInformationPersonModell model ,UpadateInformationPersonController controler)
+    public JButtonEditorAktivitatet(Index_Protuc_Modell model ,Index_Protuc_Controller controler)
     {  super();
         _indexModel=model;
 
@@ -41,16 +42,20 @@ public class JButtonEditor extends AbstractCellEditor implements TableCellEditor
 
     }
 
-    @Override
-    public Component getTableCellEditorComponent(JTable jTable, Object o, boolean b, int i, int i1) {
-        button_table.setText("x");
-        return button_table;
-    }
-
-    @Override
     public Object getCellEditorValue() {
+        // TODO Auto-generated method stub
         return null;
     }
+
+
+    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelcted, int row, int column) {
+        button_table.setText("x");
+        return button_table;
+
+    }
+
+
+
 
     public boolean stopCellEditing(){
         return true;
