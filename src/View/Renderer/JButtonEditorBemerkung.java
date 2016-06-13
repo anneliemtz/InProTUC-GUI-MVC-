@@ -1,5 +1,8 @@
 package View.Renderer;
 
+import Controller.UpdatePersonController;
+import Model.UpdatePersonModel;
+
 import java.awt.Component;
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
@@ -12,9 +15,9 @@ import javax.swing.table.TableCellEditor;
 public class JButtonEditorBemerkung extends AbstractCellEditor implements TableCellEditor{
     String text;
     public JButton button_table ;
-    public UpdateInformationPersonModell _indexModel;
+    public UpdatePersonModel _indexModel;
     /// zum View gehoeriger Controller
-    private UpadateInformationPersonController _indexControler;
+    private UpdatePersonController _indexControler;
 
     // das ist mien Konstruktor und hier wird alle Button
     public  JButtonEditorBemerkung (){
@@ -26,7 +29,7 @@ public class JButtonEditorBemerkung extends AbstractCellEditor implements TableC
 
     }
 
-    public JButtonEditorBemerkung(UpdateInformationPersonModell model ,UpadateInformationPersonController controler)
+    public JButtonEditorBemerkung(UpdatePersonModel model, UpdatePersonController controler)
     {  super();
         _indexModel=model;
 
