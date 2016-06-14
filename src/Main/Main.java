@@ -18,7 +18,10 @@ public class Main {
         //InsertStatusView fenster = new InsertStatusView(new InsertStatusModel(), "Fenster");
         //BorderLayoutDemo fenster = new BorderLayoutDemo();
 
-        IndexUpdatePersonView login =new IndexUpdatePersonView(new IndexUpdatePersonModel(),"login");
+        //IndexUpdatePersonView login =new IndexUpdatePersonView(new IndexUpdatePersonModel(),"login");
+
+
+        // Blalallalal das ist test
 
 
 
