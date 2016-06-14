@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by annelie on 09.05.16.
+ * Created by annelie on 09.05.16. // Test
  */
 public class ErgebnisTableController implements ActionListener {
     private ErgebnisTableModel _model;
@@ -19,7 +19,7 @@ public class ErgebnisTableController implements ActionListener {
     String SELECT_EINFACH = "Einfache Suche", SELECT_ERWEITERT = "Erweiterte Suche";
     String DATEI_DRUCKEN = "Drucken", DATEI_EXPO = "Exportieren", DATEI_PDF = "Datenbank als Pdf exportieren", DATEI_EXCEL = "Datenbank als Excel-Tabelle exportieren";
 
-
+    
     public ErgebnisTableController(ErgebnisTableModel model, ErgebnisTableView view){
         this._model = model;
         this._view = view;
