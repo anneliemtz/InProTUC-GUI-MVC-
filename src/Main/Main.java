@@ -19,9 +19,12 @@ public class Main {
         //BorderLayoutDemo fenster = new BorderLayoutDemo();
 
         //IndexUpdatePersonView login =new IndexUpdatePersonView(new IndexUpdatePersonModel(),"login");
+<<<<<<< HEAD
 
 
         // Blalallalal das ist test
+=======
+>>>>>>> 02923e23691eb4e527ed4574fea3e72004a16a78
 
 
 
