@@ -1,11 +1,9 @@
 package View.Renderer;
 
-import Controller.IndexUpdatePersonController;
-import Model.IndexUpdatePersonModel;
+import Controller.Update.IndexUpdatePersonController;
+import Model.Update.IndexUpdatePersonModel;
 
 import javax.swing.table.TableCellEditor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.AbstractCellEditor;
@@ -18,6 +16,7 @@ public class JButtonEditorAktivitatet extends AbstractCellEditor implements Tabl
 
     String text;
     public JButton button_table ;
+
     private IndexUpdatePersonModel _indexModel;
     /// zum View gehoeriger Controller
     private IndexUpdatePersonController _indexControler;

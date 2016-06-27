@@ -1,7 +1,7 @@
 package View.Renderer;
 
-import Controller.UpdatePersonController;
-import Model.UpdatePersonModel;
+import Controller.Update.UpdatePersonController;
+import Model.Update.UpdatePersonModel;
 
 import java.awt.Component;
 import javax.swing.AbstractCellEditor;

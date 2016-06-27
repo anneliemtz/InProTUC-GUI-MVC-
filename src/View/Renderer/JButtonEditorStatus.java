@@ -1,11 +1,9 @@
 package View.Renderer;
 
-import Controller.UpdatePersonController;
-import Model.UpdatePersonModel;
+import Controller.Update.UpdatePersonController;
+import Model.Update.UpdatePersonModel;
 
 import javax.swing.table.TableCellEditor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.AbstractCellEditor;
