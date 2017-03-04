@@ -27,7 +27,7 @@ public class Connection_DB {
 
         //Verbindet sich mit der Datenbank
         try{
-            connection= DriverManager.getConnection("jdbc:postgresql://pgsql.hrz.tu-chemnitz.de:5432/inprotuc","inprotuc_rw","ThaWaiz3");
+            connection= DriverManager.getConnection("DB","User","Password");
             System.out.println("Eingeloggt.");
         }
         catch(SQLException e){
